@@ -1,20 +1,24 @@
-const AdminBro = require('admin-bro')
-const AdminBroExpress = require('@admin-bro/express')
+require('dotenv').config()
 
+import AdminBro from 'admin-bro'
+import AdminBroSequelize from '@admin-bro/sequelize'
 
-const adminBro = new AdminBro({
-  databases: [],
-  rootPath: '/admin',
-})
+import { connect, sessionStore, authenticate, createAdmin } from './infra/databases/sequelize'
+import { listen } from "./infra/api/express"
+import { options } from './infra/admin/options'
 
-const router = AdminBroExpress.buildRouter(adminBro)
+AdminBro.registerAdapter(AdminBroSequelize)
 
+const run = async (): Promise<void> => {
+  const sequelize = await connect()
 
+  const admin = new AdminBro(options)
 
-//server
+  await createAdmin()
 
-const express = require('express')
-const app = express()
+  admin.watch()
 
-app.use(adminBro.options.rootPath, router)
-app.listen(8080, () => console.log('Server started'))
+  listen(admin, sessionStore(sequelize), authenticate)
+}
+
+run()
