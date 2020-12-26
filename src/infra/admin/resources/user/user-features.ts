@@ -18,10 +18,11 @@ export const UserFeatures: Array<FeatureType> = [
       bucket: 'profilePhoto.bucket',
     },
     provider: {
-      gcp: {
+     /*  gcp: {
         bucket: process.env.USERS_BUCKET as string,
         expires: 0,
-      },
+      }, */
+      local: { bucket: 'public' }
     },
     validation: {
       mimeTypes: ['image/jpeg', 'image/png'],

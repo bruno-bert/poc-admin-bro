@@ -23,6 +23,7 @@ export const listen = (
   const app = express()
 
   app.use(admin.options.rootPath, router)
+  app.use('/uploads', express.static('uploads'));
 
   app.use((error, req, res, next) => {
     if (error) {
