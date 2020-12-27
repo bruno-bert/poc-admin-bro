@@ -8,11 +8,14 @@ import * as TagAdmin from './resources/tag'
 
 export const options: AdminBroOptions = {
   rootPath: '/admin',
+  
   version: {
     admin: true,
+    app: "Bariatric Surgery Sales Management - Johnson&Johnson Medical Devices"
   },
   branding: {
     companyName: 'Bariatric Surgery Sales Management - Johnson&Johnson Medical Devices',
+    softwareBrothers: false,
   },
   dashboard: {
     handler: async () => {

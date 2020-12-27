@@ -13,7 +13,9 @@ export const authenticate = async (email, password): Promise<CurrentAdmin | null
     return {
       ...user.toJSON(),
       title: 'User',
+      /** TODO - investigate how to get image from s3 to show in avatar */
       avatarUrl: `https://ui-avatars.com/api/?background=0D8ABC&color=fff&size=128&name=${email}`,
+      //avatarUrl: user.profilePhoto ? `https://dev-bruno-bert-bucket.s3.amazonaws.com/${user.profilePhoto.path}  as string : `https://ui-avatars.com/api/?background=0D8ABC&color=fff&size=128&name=${email}`,
       email,
     }
   }

@@ -4,6 +4,11 @@ import { sequelize } from '../../../../databases/sequelize'
 
 export interface UserSequelizeInterface extends UserInterface, Model {}
 
+export enum Role {
+  ADMIN,
+  MEMBER
+}
+
 export const UserModel = sequelize.define<UserSequelizeInterface>('Users', {
   // Model attributes are defined here
   id: {
@@ -29,6 +34,7 @@ export const UserModel = sequelize.define<UserSequelizeInterface>('Users', {
     allowNull: true,
     type: DataTypes.JSONB,
   },
+  role: { type: DataTypes.STRING,   allowNull: false, defaultValue: 'jnj' },
 }, {
   // Other model options go here
 })
