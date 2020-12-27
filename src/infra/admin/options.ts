@@ -1,9 +1,10 @@
 import AdminBro, { AdminBroOptions } from 'admin-bro'
 import * as UserAdmin from './resources/user'
-import * as MediaAdmin from './resources/media'
+/* import * as MediaAdmin from './resources/media'
 import * as BrandAdmin from './resources/brand'
 import * as ProductAdmin from './resources/product'
-import * as TagAdmin from './resources/tag'
+import * as TagAdmin from './resources/tag' */
+import * as SalesAdmin from './resources/sale'
 
 
 export const options: AdminBroOptions = {
@@ -25,9 +26,10 @@ export const options: AdminBroOptions = {
   },
   resources: [
     UserAdmin,
-    ProductAdmin,
+    SalesAdmin,
+   /*  ProductAdmin,
     MediaAdmin,
     BrandAdmin,
-    TagAdmin,
+    TagAdmin, */
   ],
 }
