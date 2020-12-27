@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2017",                         
+    "jsx": "preserve",
+    "target": "es5",                         
     "module": "commonjs",                    
     "allowJs": true,     
     "outDir": "dist",                  
@@ -8,9 +9,14 @@
     "baseUrl": "src",                      
     "paths": {
       "@/*" : ["*"]
-     },                          
-    "esModuleInterop": true,              
+     },   
+                         
+    "esModuleInterop": true,
+
+    
+    "noImplicitThis": true,
+    "moduleResolution": "node"  
    },
-   "include": ["src/**/*"],
-   "exclude": ["node_modules"]
+   "include": ["src"],
+   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }

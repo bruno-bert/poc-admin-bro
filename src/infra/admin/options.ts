@@ -18,11 +18,11 @@ export const options: AdminBroOptions = {
     companyName: 'Bariatric Surgery Sales Management - Johnson&Johnson Medical Devices',
     softwareBrothers: false,
   },
-  dashboard: {
+ dashboard: {
     handler: async () => {
       return { some: 'output' }
     },
-    component: AdminBro.bundle('./components/dashboard')
+    component: AdminBro.bundle('../../../src/infra/admin/components/dashboard')
   },
   resources: [
     UserAdmin,

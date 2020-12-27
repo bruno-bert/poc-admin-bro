@@ -1,8 +1,8 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize'
 import { sequelize } from '../../../../databases/sequelize/connect'
-import { SalesInterface } from '../sales-interface'
+import { SaleInterface } from '../sales-interface'
 
-export interface SalesSequelizeInterface extends Model, SalesInterface {}
+export interface SalesSequelizeInterface extends Model, SaleInterface {}
 
 export const SalesModel = sequelize.define<SalesSequelizeInterface>('Sales', {
   // Model attributes are defined here
