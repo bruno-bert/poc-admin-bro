@@ -1,5 +1,4 @@
 import { buildAuthenticatedRouter } from '@admin-bro/express'
-
 import AdminBro from 'admin-bro'
 import express from 'express'
 import {env} from './env'
@@ -22,9 +21,12 @@ export const listen = (
 
   const app = express()
 
-  app.use(admin.options.rootPath, router)
-  app.use('/uploads', express.static('uploads'));
+  /** TODO - turn this dinamic based on config of bucket type */
+  //app.use('/uploads', express.static(__dirname + '/uploads'));
 
+  app.use(admin.options.rootPath, router)
+
+  
   app.use((error, req, res, next) => {
     if (error) {
       console.error(error)

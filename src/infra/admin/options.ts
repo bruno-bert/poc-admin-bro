@@ -11,6 +11,9 @@ export const options: AdminBroOptions = {
   version: {
     admin: true,
   },
+  branding: {
+    companyName: 'Bariatric Surgery Sales Management - Johnson&Johnson Medical Devices',
+  },
   dashboard: {
     handler: async () => {
       return { some: 'output' }
