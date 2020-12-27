@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
+    "jsx": "preserve",
     "target": "es5",                         
     "module": "commonjs",                    
-    "allowJs": true,                       
+    "allowJs": true,     
+    "outDir": "dist",                  
     "rootDir": "src",                      
     "baseUrl": "src",                      
     "paths": {
       "@/*" : ["*"]
-    },                          
-    "esModuleInterop": true,              
-   }
+     },   
+                         
+    "esModuleInterop": true,
+
+    
+    "noImplicitThis": true,
+    "moduleResolution": "node"  
+   },
+   "include": ["src"],
+   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }
