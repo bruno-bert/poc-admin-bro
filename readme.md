@@ -2,7 +2,11 @@
 
 ### Requirements
 
-Test
+[] test child list
+[] strong password
+[] create report in pdf
+
+
 
 
 ### How to Deploy

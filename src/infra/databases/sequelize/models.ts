@@ -1,13 +1,11 @@
-import { ProductModel } from '../../admin/resources/product/entities/sequelize'
+import { SalesModel } from '../../admin/resources/sale/entities/sequelize'
 import { UserModel } from '../../admin/resources/user/entities/sequelize'
-import { BrandModel } from '../../admin/resources/brand/entities/sequelize'
-import { MediaModel } from '../../admin/resources/media/entities/sequelize'
+import { ItemsModel } from '../../admin/resources/item/entities/sequelize'
 
-export type AvailableModels = 'User' |  'Brand' | 'Product' | 'Media'
+export type AvailableModels = 'User' |  'Sale' | 'Item' 
 
 export const models: Record<AvailableModels, any> = {
-  Brand: BrandModel,
-  Media: MediaModel,
+  Sale: SalesModel,
+  Item: ItemsModel,
   User: UserModel,
-  Product: ProductModel,
 }

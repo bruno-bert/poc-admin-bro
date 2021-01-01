@@ -1,26 +1,42 @@
-import { Action, RecordActionResponse } from 'admin-bro'
-//import { canModifyUsers } from '../../../../data/rbac/can-modify-users'
-//import { canShowOrListUser } from '../../../../data/rbac/can-show-or-list-user'
+import { ItemsModel } from '../item/entities/sequelize'
 
-//const modifyAction: Partial<Action<RecordActionResponse>> =  { isAccessible: canModifyUsers }
-//const showOrListAction: Partial<Action<RecordActionResponse>> =  { isAccessible: canShowOrListUser }
+
+const addItems = async (originalResponse, request, context) => {
+   
+    const conditionToAddItems = String(request.method).toUpperCase() === 'POST'
+                                && originalResponse.record
+                                && !Object.keys(originalResponse.record.errors).length
+
+    if (conditionToAddItems)  {
+           
+            for(var itemIndex=0;itemIndex<originalResponse.record.params.numberOfItems;itemIndex++) {
+                await ItemsModel.create({
+                    status: 'pending',
+                    SaleId: originalResponse.record.params.id
+                })
+            }
+            
+    }
+    
+    return originalResponse
+  }
+
+
+  const getItems = async(originalResponse, request, context)=>{
+      
+      if (originalResponse.record){
+        const items = await ItemsModel.findAll({where:{SaleId: originalResponse.record.params.id}})
+        originalResponse.record.populated = { ...originalResponse.record.populated, items}
+        return originalResponse
+      }
+      else return originalResponse
+   
+  }
+
 
 export const SalesActions = {
+   new:  { after: addItems  },
+   edit: { after: getItems },
+   show: { after: getItems }
    
-  exporter: {
-    actionType: 'resource',
-    icon: 'Export',
-  },
-  export: {
-    actionType: 'resource',
-    icon: 'DocumentExport',
-    variant: 'light',
-    parent: 'exporter',
-  },
-  import: {
-    actionType: 'resource',
-    icon: 'DocumentImport',
-    variant: 'light',
-    parent: 'exporter',
-  },
 }

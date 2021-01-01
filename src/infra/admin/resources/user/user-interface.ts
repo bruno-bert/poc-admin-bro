@@ -1,11 +1,5 @@
-export type ProfilePhoto = {
-  bucketKey: string;
-  bucket: string;
-  mimeType: string;
-  size: number;
-}
 
-export type ProfilePhotoLocal = {
+export type ProfilePhoto = {
   mimeType: string;
   size: number;
   path: String,
@@ -20,5 +14,5 @@ export interface UserInterface {
   lastName?: string;
   email: string;
   encryptedPassword: string;
-  profilePhoto?: ProfilePhotoLocal;
+  profilePhoto?: ProfilePhoto;
 }

@@ -1,51 +1,31 @@
-import { ResourceOptions } from 'admin-bro'
+import AdminBro, { ResourceOptions } from 'admin-bro'
 import { SalesParent } from '../../parents'
 import { SalesActions as actions } from './sales-actions'
 
 export const SalesResource: ResourceOptions = {
   parent: SalesParent,
-  
-
-  /** TODO - separate actions in other file */
-  actions: {
-    exporter: {
-      actionType: 'resource',
-      icon: 'Export',
-    },
-    export: {
-      actionType: 'resource',
-      icon: 'DocumentExport',
-      variant: 'light',
-      parent: 'exporter',
-    },
-    import: {
-      actionType: 'resource',
-      icon: 'DocumentImport',
-      variant: 'light',
-      parent: 'exporter',
-    },
-  },
- 
-
+  listProperties: ['name', 'numberOfItems', 'salesDate', 'userId'],
   properties: {
     userId: {
-      reference: 'Users',
-      position: 10,
+      reference: 'Users',      
     },
+
+  
+
     document: {
       type: 'mixed',
     },
+
+    items: {
+      reference: 'Items',
+     
+      components: {
+        edit: AdminBro.bundle('../../../../../src/infra/admin/components/items-list-edit'),
+        show: AdminBro.bundle('../../../../../src/infra/admin/components/items-list-show'),
+      },
+    },
    
-   /*  description: {
-      type: 'richtext',
-      props: {
-        quill: {
-          theme: 'bubble',
-          modules: {
-            toolbar: [['bold', 'italic'], ['link', 'image']],
-          }
-        }
-      }
-    }, */
+ 
   },
+  actions
 }

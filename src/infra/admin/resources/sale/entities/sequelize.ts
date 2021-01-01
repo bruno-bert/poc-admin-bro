@@ -1,10 +1,11 @@
 import { DataTypes, Model, UUIDV4 } from 'sequelize'
 import { sequelize } from '../../../../databases/sequelize/connect'
+import { ItemsModel } from '../../item/entities/sequelize'
 import { SaleInterface } from '../sales-interface'
 
 export interface SalesSequelizeInterface extends Model, SaleInterface {}
 
-export const SalesModel = sequelize.define<SalesSequelizeInterface>('Sales', {
+ const SalesModel = sequelize.define<SalesSequelizeInterface>('Sales', {
   // Model attributes are defined here
   id: {
     primaryKey: true,
@@ -34,3 +35,6 @@ export const SalesModel = sequelize.define<SalesSequelizeInterface>('Sales', {
 }, {
   // Other model options go here
 })
+
+SalesModel.hasMany(ItemsModel)
+export { SalesModel }
