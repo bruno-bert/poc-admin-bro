@@ -16,11 +16,6 @@ exports.UserFeatures = [
         hash: argon2_1.default.hash,
     }),
     upload_1.default({
-        /*  properties: {
-           key: 'profilePhoto.bucketKey',
-           mimeType: 'profilePhoto.mimeType',
-           bucket: 'profilePhoto.bucket',
-         }, */
         properties: {
             key: 'profilePhoto.path',
             mimeType: 'profilePhoto.mimeType',
@@ -30,11 +25,6 @@ exports.UserFeatures = [
             file: 'profilePhoto'
         },
         provider: {
-            /*  gcp: {
-               bucket: process.env.USERS_BUCKET as string,
-               expires: 0,
-             },
-             local: { bucket: 'uploads' } */
             aws: {
                 bucket: env_1.env.AWS_BUCKET,
                 accessKeyId: env_1.env.AWS_ACCESS_KEY_ID,

@@ -16,7 +16,7 @@ exports.UserResource = {
             availableValues: [
                 { value: 'doctor', label: 'Doctor' },
                 { value: 'jnj', label: 'JnJ' },
-                { value: 'Admin', label: 'Admin' },
+                { value: 'admin', label: 'Admin' },
             ],
         }
     },

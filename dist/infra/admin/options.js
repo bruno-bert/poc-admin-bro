@@ -61,15 +61,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.options = void 0;
 var admin_bro_1 = __importDefault(require("admin-bro"));
 var UserAdmin = __importStar(require("./resources/user"));
-/* import * as MediaAdmin from './resources/media'
-import * as BrandAdmin from './resources/brand'
-import * as ProductAdmin from './resources/product'
-import * as TagAdmin from './resources/tag' */
 var SalesAdmin = __importStar(require("./resources/sale"));
+var ItemsAdmin = __importStar(require("./resources/item"));
 exports.options = {
     rootPath: '/admin',
     version: {
-        admin: true,
+        admin: false,
         app: "Bariatric Surgery Sales Management - Johnson&Johnson Medical Devices"
     },
     branding: {
@@ -87,5 +84,6 @@ exports.options = {
     resources: [
         UserAdmin,
         SalesAdmin,
+        ItemsAdmin
     ],
 };

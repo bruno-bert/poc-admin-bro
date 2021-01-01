@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SalesModel = void 0;
 var sequelize_1 = require("sequelize");
 var connect_1 = require("../../../../databases/sequelize/connect");
-exports.SalesModel = connect_1.sequelize.define('Sales', {
+var sequelize_2 = require("../../item/entities/sequelize");
+var SalesModel = connect_1.sequelize.define('Sales', {
     // Model attributes are defined here
     id: {
         primaryKey: true,
@@ -33,3 +34,5 @@ exports.SalesModel = connect_1.sequelize.define('Sales', {
 }, {
 // Other model options go here
 });
+exports.SalesModel = SalesModel;
+SalesModel.hasMany(sequelize_2.ItemsModel);
