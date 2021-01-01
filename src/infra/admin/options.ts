@@ -1,17 +1,14 @@
 import AdminBro, { AdminBroOptions } from 'admin-bro'
 import * as UserAdmin from './resources/user'
-/* import * as MediaAdmin from './resources/media'
-import * as BrandAdmin from './resources/brand'
-import * as ProductAdmin from './resources/product'
-import * as TagAdmin from './resources/tag' */
 import * as SalesAdmin from './resources/sale'
+import * as ItemsAdmin from './resources/item'
 
 
 export const options: AdminBroOptions = {
   rootPath: '/admin',
   
   version: {
-    admin: true,
+    admin: false,
     app: "Bariatric Surgery Sales Management - Johnson&Johnson Medical Devices"
   },
   branding: {
@@ -27,9 +24,6 @@ export const options: AdminBroOptions = {
   resources: [
     UserAdmin,
     SalesAdmin,
-   /*  ProductAdmin,
-    MediaAdmin,
-    BrandAdmin,
-    TagAdmin, */
+    ItemsAdmin
   ],
 }

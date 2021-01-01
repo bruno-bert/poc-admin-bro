@@ -13,11 +13,7 @@ export const UserFeatures: Array<FeatureType> = [
     hash: argon2.hash,
   }),
   uploadFeature({
-   /*  properties: {
-      key: 'profilePhoto.bucketKey',
-      mimeType: 'profilePhoto.mimeType',
-      bucket: 'profilePhoto.bucket',
-    }, */
+
     properties: {
       key: 'profilePhoto.path',
       mimeType: 'profilePhoto.mimeType',
@@ -29,12 +25,7 @@ export const UserFeatures: Array<FeatureType> = [
  
 
     provider: {
-     /*  gcp: {
-        bucket: process.env.USERS_BUCKET as string,
-        expires: 0,
-      }, 
-      local: { bucket: 'uploads' } */
-
+    
       aws: {
         bucket: env.AWS_BUCKET,
         accessKeyId: env.AWS_ACCESS_KEY_ID,

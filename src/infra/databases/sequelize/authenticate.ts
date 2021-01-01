@@ -22,6 +22,8 @@ export const authenticate = async (email, password): Promise<CurrentAdmin | null
   return null
 }
 
+
+
 export const createAdmin = async (): Promise<void> => {
   const existingUser = await UserModel.findOne({
     where: { email: env.admin_email },
@@ -30,6 +32,7 @@ export const createAdmin = async (): Promise<void> => {
   if (!existingUser) {
     await UserModel.create({
       email: env.admin_email as string,
+      role: 'doctor',
       encryptedPassword: await argon2.hash(env.admin_password as string),
     })
   }
