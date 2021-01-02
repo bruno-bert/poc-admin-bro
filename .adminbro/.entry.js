@@ -7,15 +7,17 @@ import Component3 from '../node_modules/@admin-bro/upload/src/features/upload-fi
 AdminBro.UserComponents.Component3 = Component3
 import Component4 from '../node_modules/@admin-bro/upload/src/features/upload-file/components/show'
 AdminBro.UserComponents.Component4 = Component4
-import Component5 from '../src/infra/admin/components/items-list-edit'
+import Component5 from '../src/infra/admin/components/document-button-show'
 AdminBro.UserComponents.Component5 = Component5
-import Component6 from '../src/infra/admin/components/items-list-show'
+import Component6 from '../src/infra/admin/components/items-list-edit'
 AdminBro.UserComponents.Component6 = Component6
-import Component7 from '../node_modules/@admin-bro/upload/src/features/upload-file/components/edit'
+import Component7 from '../src/infra/admin/components/items-list-show'
 AdminBro.UserComponents.Component7 = Component7
-import Component8 from '../node_modules/@admin-bro/upload/src/features/upload-file/components/list'
+import Component8 from '../node_modules/@admin-bro/upload/src/features/upload-file/components/edit'
 AdminBro.UserComponents.Component8 = Component8
-import Component9 from '../node_modules/@admin-bro/upload/src/features/upload-file/components/show'
+import Component9 from '../node_modules/@admin-bro/upload/src/features/upload-file/components/list'
 AdminBro.UserComponents.Component9 = Component9
-import Component10 from '../src/infra/admin/components/dashboard'
+import Component10 from '../node_modules/@admin-bro/upload/src/features/upload-file/components/show'
 AdminBro.UserComponents.Component10 = Component10
+import Component11 from '../src/infra/admin/components/dashboard'
+AdminBro.UserComponents.Component11 = Component11

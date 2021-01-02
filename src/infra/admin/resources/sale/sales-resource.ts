@@ -10,8 +10,6 @@ export const SalesResource: ResourceOptions = {
       reference: 'Users',      
     },
 
-  
-
     document: {
       type: 'mixed',
     },

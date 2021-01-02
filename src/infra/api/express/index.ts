@@ -22,7 +22,7 @@ export const listen = (
   const app = express()
 
   /** TODO - turn this dinamic based on config of bucket type */
-  //app.use('/uploads', express.static(__dirname + '/uploads'));
+  app.use('/public', express.static('public'));
 
   app.use(admin.options.rootPath, router)
 
@@ -34,5 +34,5 @@ export const listen = (
     next(error)
   })
 
-  app.listen(port, () => console.log(`app is listening on http://localhost:${port}${admin.options.rootPath}`))
+  app.listen(port, () => console.log(`app is listening on ${env.server}:${port}${admin.options.rootPath}`))
 }
