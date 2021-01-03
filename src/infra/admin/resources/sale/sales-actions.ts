@@ -3,9 +3,29 @@ import { ItemsModel } from '../item/entities/sequelize'
 import {env} from '../../../api/express/env'
 
 const print = async(request, response, data)=>{
-  const fs = (require('fs'))
+  const fs = require('fs')
   const pdf = require('html-pdf')
-  const html = fs.readFileSync('./document.html').toString()
+
+  const Handlebars  = require('handlebars');
+
+
+  const renderHtml = async (file, data) => {
+      return new Promise((resolve, reject)=>{
+        fs.readFile(file, (err, content)=>{
+          if (err) reject(err)
+          const template = Handlebars.compile(content.toString());
+          resolve(template(data));
+        });
+      })
+  }
+
+  const items = await ItemsModel.findAll({where:{SaleId: data.record.params.id}, raw: true})
+  console.log('items',items)
+
+  const html = await renderHtml('./templates/document.hbs', { 
+    sale: data.record.params, 
+    user: data.record.populated['userId'].params,
+    items })
         
     const options = {
         type: 'pdf',
@@ -27,9 +47,7 @@ const print = async(request, response, data)=>{
     fs.writeFileSync(fileUrl, result);
    
   
-    /** According to documentation actionresponse should have notice and redirectUrl by standard 
-     * since not working, added the params to record.parms
-    */
+   
     const notice =  {message: 'Click to download', type: 'success'}
     const redirectUrl =  `${String(env.server).replace('http://', '')}:${env.port}/${fileUrl}`    
     data.record.params = { ...data.record.params, notice, redirectUrl}
@@ -39,7 +57,7 @@ const print = async(request, response, data)=>{
  
 } 
 
-const addItems = async (originalResponse, request, context) => {
+  const addItems = async (originalResponse, request, context) => {
    
     const conditionToAddItems = String(request.method).toUpperCase() === 'POST'
                                 && originalResponse.record
@@ -61,9 +79,11 @@ const addItems = async (originalResponse, request, context) => {
 
 
   const getItems = async(originalResponse, request, context)=>{
-      
-      if (originalResponse && originalResponse.record){
-        const items = await ItemsModel.findAll({where:{SaleId: originalResponse.record.params.id}})
+    
+    const salesId = originalResponse.record?.params?.id || originalResponse.params?.recordId
+    console.log('salesId', salesId)
+      if (salesId){
+        const items = await ItemsModel.findAll({where:{SaleId: salesId}})
         originalResponse.record.populated = { ...originalResponse.record.populated, items}
         return originalResponse
       }
@@ -77,7 +97,6 @@ export const SalesActions = {
    edit: {  after: getItems },
    show: { after: getItems },
    print: {
-    after: getItems,
     actionType: 'record',
     icon: 'Document',
     component: AdminBro.bundle('../../../../../src/infra/admin/components/document-button-show'), 
