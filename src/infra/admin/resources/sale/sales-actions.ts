@@ -1,6 +1,11 @@
 import AdminBro from 'admin-bro'
 import { ItemsModel } from '../item/entities/sequelize'
 import {env} from '../../../api/express/env'
+import { canShowOrListSales } from '../../../../data/rbac/can-show-or-list-sales'
+import { canAddSales } from '../../../../data/rbac/can-add-sales'
+import { canDeleteSales} from '../../../../data/rbac/can-delete-sales'
+import { canPrintSales} from '../../../../data/rbac/can-print-sales'
+
 
 const print = async(request, response, data)=>{
   const fs = require('fs')
@@ -93,10 +98,30 @@ const print = async(request, response, data)=>{
 
 
 export const SalesActions = {
-   new:  { after: addItems  },
-   edit: {  after: getItems },
-   show: { after: getItems },
+   new:  { after: addItems, isAccessible: canAddSales  },
+   edit: {  after: getItems, isAccessible: canShowOrListSales },
+   show: { after: getItems, isAccessible: canShowOrListSales },
+   delete:  { isAccessible: canDeleteSales  },
+   list: {
+    
+      before: async (request, context) => {
+        const { currentAdmin } = context
+        if (currentAdmin.role === 'admin' || currentAdmin.role === 'jnj'){
+          return request
+        } else {
+          return {
+            ...request,
+            query: {
+               ...request.query,
+               'filters.userId': currentAdmin.id 
+          }
+         }
+        }
+        
+      }
+   },
    print: {
+    isAccessible: canPrintSales,
     actionType: 'record',
     icon: 'Document',
     component: AdminBro.bundle('../../../../../src/infra/admin/components/document-button-show'), 
