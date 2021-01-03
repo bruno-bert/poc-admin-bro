@@ -20,7 +20,7 @@ var listen = function (admin, sessionStore, authenticate, port) {
     });
     var app = express_2.default();
     /** TODO - turn this dinamic based on config of bucket type */
-    //app.use('/uploads', express.static(__dirname + '/uploads'));
+    app.use('/public', express_2.default.static('public'));
     app.use(admin.options.rootPath, router);
     app.use(function (error, req, res, next) {
         if (error) {
@@ -28,6 +28,6 @@ var listen = function (admin, sessionStore, authenticate, port) {
         }
         next(error);
     });
-    app.listen(port, function () { return console.log("app is listening on http://localhost:" + port + admin.options.rootPath); });
+    app.listen(port, function () { return console.log("app is listening on " + env_1.env.server + ":" + port + admin.options.rootPath); });
 };
 exports.listen = listen;

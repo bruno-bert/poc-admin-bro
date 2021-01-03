@@ -96,7 +96,9 @@ var createAdmin = function () { return __awaiter(void 0, void 0, void 0, functio
                 _b = (_a = sequelize_1.UserModel).create;
                 _c = {
                     email: env_1.env.admin_email,
-                    role: 'doctor'
+                    role: 'admin',
+                    firstName: 'Admin',
+                    lastName: 'Admin'
                 };
                 return [4 /*yield*/, argon2_1.default.hash(env_1.env.admin_password)];
             case 2: return [4 /*yield*/, _b.apply(_a, [(_c.encryptedPassword = _d.sent(),

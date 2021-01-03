@@ -102,6 +102,14 @@ export const SalesActions = {
    edit: {  after: getItems, isAccessible: canShowOrListSales },
    show: { after: getItems, isAccessible: canShowOrListSales },
    delete:  { isAccessible: canDeleteSales  },
+   print: {
+    /* isAccessible: canPrintSales, */
+    actionType: 'record',
+    icon: 'Document',
+    component: AdminBro.bundle('../../../../../src/infra/admin/components/document-button-show'), 
+    handler: print,
+    showFilter: false,
+   },
    list: {
     
       before: async (request, context) => {
@@ -119,14 +127,9 @@ export const SalesActions = {
         }
         
       }
-   },
-   print: {
-    isAccessible: canPrintSales,
-    actionType: 'record',
-    icon: 'Document',
-    component: AdminBro.bundle('../../../../../src/infra/admin/components/document-button-show'), 
-    handler: print,
-    showFilter: false,
-   },
+
+      
+   }
+  
    
 }
