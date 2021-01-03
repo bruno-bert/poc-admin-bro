@@ -13,6 +13,7 @@ exports.SalesResource = {
     properties: {
         userId: {
             reference: 'Users',
+            isVisible: { filter: true },
         },
         document: {
             type: 'mixed',
